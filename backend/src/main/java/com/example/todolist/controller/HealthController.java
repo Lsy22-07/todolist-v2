@@ -33,6 +33,7 @@ public class HealthController {
      * GET /api/health
      * 返回统一响应体，证明「路由 + JSON 序列化 + 统一响应」三件事都通了。
      */
+    //减肥肥就
     @GetMapping("/health")
     public Result<Map<String, Object>> health() {
         Map<String, Object> data = new LinkedHashMap<>();
