@@ -5,4 +5,7 @@ spring:
   application:
     name: todolist
 
-# 数据库配置先空着，11:35 那一步再填
+  # 激活 application-dev.yml —— 本地开发的数据库账号密码写在那个文件里
+  # 以后部署到服务器时改成 prod，另建 application-prod.yml，代码不用动
+  profiles:
+    active: dev

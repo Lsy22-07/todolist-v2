@@ -2,7 +2,6 @@ package com.example.todolist;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 
 /**
  * 启动类 —— 整个应用的唯一入口。
@@ -14,13 +13,14 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
  *     2) 扫描本包及子包下的 @Component / @RestController 等注解
  *     3) 发现 classpath 上有 spring-boot-starter-web，就拉起内嵌 Tomcat
  *
- * 为什么带 exclude：
- *   pom 里有 mybatis-spring-boot-starter + mysql-connector-j，Boot 一看 classpath
- *   上有 JDBC 就要求配置 spring.datasource.url，没配就启动失败。
- *   当前阶段（S4）还没接数据库，所以临时关掉数据源自动配置。
- *   【接数据库时删掉 exclude 这一项，并在 application.yml 补 datasource 配置】
+ * 关于数据源（S5 起）：
+ *   pom 里有 mybatis-spring-boot-starter + mysql-connector-j，Boot 一看到 JDBC 相关
+ *   依赖就会自动配置 DataSource，配置来源是 application-dev.yml 里的 spring.datasource.*
+ *   （由 application.yml 的 spring.profiles.active: dev 激活）。
+ *   S4 阶段曾用 exclude = DataSourceAutoConfiguration.class 临时关掉它；
+ *   S5 接上数据库后，这一行已经删除。
  */
-@SpringBootApplication(exclude = DataSourceAutoConfiguration.class)
+@SpringBootApplication
 public class TodoListApplication {
 
     public static void main(String[] args) {
