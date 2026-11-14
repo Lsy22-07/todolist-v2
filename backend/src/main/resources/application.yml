@@ -1,0 +1,8 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: todolist
+
+# 数据库配置先空着，11:35 那一步再填
